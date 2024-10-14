@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+
 class Update with ChangeNotifier {
   List<String> service = [
     'Salon at Home',
@@ -12,16 +13,17 @@ class Update with ChangeNotifier {
     'PestControl'
   ];
   List<String> images = [
-    'makeup.png',
-    'massage.png',
-    'cleaner.png',
-    'electrician.png',
-    'air-conditioner.png',
-    'cosmetics.png',
-    'gymnastics.png',
-    'paint.png',
-    'pest.png'
+    'assets/images/makeup.png',
+    'assets/images/massage.png',
+    'assets/images/cleaner.png',
+    'assets/images/electrician.png',
+    'assets/images/air-conditioner.png',
+    'assets/images/cosmetics.png',
+    'assets/images/gymnastics.png',
+    'assets/images/paint.png',
+    'assets/images/pest.png',
   ];
+
   List<String> img = [
     'https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep/categories/category_v2/category_ff4015a0.png',
     'https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep/categories/category_v2/category_9093fa70.jpeg',
@@ -30,7 +32,7 @@ class Update with ChangeNotifier {
     'https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep/categories/category_v2/category_5612ca90.png',
     'https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep/categories/category_v2/category_6a7a5f30.png'
   ];
-  
+
   List<String> getServices() {
     return service;
   }
@@ -42,5 +44,4 @@ class Update with ChangeNotifier {
   List<String> getListImages() {
     return img;
   }
- 
 }

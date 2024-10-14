@@ -5,19 +5,20 @@ import 'package:services_app/Constant/constant.dart';
 
 class AnimatedSplashScreen extends StatefulWidget {
   @override
-  SplashScreenState createState() => new SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
 class SplashScreenState extends State<AnimatedSplashScreen>
     with SingleTickerProviderStateMixin {
-  var _visible = true;
+  bool _visible = true;
 
-  AnimationController animationController;
-  Animation<double> animation;
+  // Use late keyword to ensure these fields are initialized before use
+  late AnimationController animationController;
+  late Animation<double> animation;
 
   startTime() async {
-    var _duration = new Duration(seconds: 3);
-    return new Timer(_duration, navigationPage);
+    var _duration = Duration(seconds: 3);
+    return Timer(_duration, navigationPage);
   }
 
   void navigationPage() {
@@ -27,12 +28,16 @@ class SplashScreenState extends State<AnimatedSplashScreen>
   @override
   void initState() {
     super.initState();
-    animationController = new AnimationController(
-        vsync: this, duration: new Duration(seconds: 2));
-    animation =
-        new CurvedAnimation(parent: animationController, curve: Curves.easeOut);
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+    animation = CurvedAnimation(
+      parent: animationController,
+      curve: Curves.easeOut,
+    );
 
-    animation.addListener(() => this.setState(() {}));
+    animation.addListener(() => setState(() {}));
     animationController.forward();
 
     setState(() {
@@ -42,29 +47,37 @@ class SplashScreenState extends State<AnimatedSplashScreen>
   }
 
   @override
+  void dispose() {
+    // Dispose the animationController when not needed to avoid memory leaks
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          new Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.end,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Padding(
-                  padding: EdgeInsets.only(bottom: 30.0),
-                  child: new Image.asset(
-                    'assets/powered_by.png',
-                    height: 25.0,
-                    fit: BoxFit.scaleDown,
-                  ))
+                padding: EdgeInsets.only(bottom: 30.0),
+                child: Image.asset(
+                  'assets/images/powered_by.png',
+                  height: 25.0,
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
             ],
           ),
-          new Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              new Image.asset(
-                'assets/logo.png',
+              Image.asset(
+                'assets/images/logo.png',
                 width: animation.value * 250,
                 height: animation.value * 250,
               ),
